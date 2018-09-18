@@ -162,38 +162,6 @@ $(document).ready(function() {
 				
 	});
 
-	/* Count Up Plugin Settings
-	-----------------------------------------------------------------------------------*/
-
-	var options = {
-		useEasing : true,
-		useGrouping : true,
-		separator : ' ',
-		decimal : '.',
-		prefix : '',
-		suffix : ''
-	};
-
-	// Set the count up numbers
-	var countup_1 = new CountUp("counter-1", 0, 4500, 0, 2.5, options);
-	var countup_2 = new CountUp("counter-2", 0, 153, 0, 2.5, options);
-	var countup_3 = new CountUp("counter-3", 0, 49, 0, 2.5, options);
-	var countup_4 = new CountUp("counter-4", 0, 978, 0, 2.5, options);	
-	
-	var $CounterStart = $('#countup' );
-
-	// If scroll get to the waypoint, the Count up start
-	$CounterStart.waypoint(function(direction) {
-		if (direction === 'down') {
-			countup_1.start();
-			countup_2.start();
-			countup_3.start();
-			countup_4.start();
-		}
-	}, {
-		offset: '100%'
-	});
-
 
 	/* Isotope Plugin Settings
 	-----------------------------------------------------------------------------------*/
@@ -324,85 +292,6 @@ $(document).ready(function() {
 		margin:30,
 		stagePadding:30,
 		smartSpeed:450
-	});
-
-
-    /* RSVP FORM
-    -----------------------------------------------------------------------------------*/
-	
-	// form validation
-	$("#rsvp_form").validate({
-		rules: {
-			name: {
-				required: true,
-				minlength: 4
-			},
-			email: "required",
-			
-			guest: {
-				required: true
-			},
-			attend: {
-				required: true
-			},
-			message: {
-				maxlength: 200
-			}
-		},
-		messages: {
-			name:{
-				required: "Please enter your name",
-				minlength: jQuery.validator.format("At least {0} characters required!")
-			},
-			email: "Please enter your email",
-			guest: "Please select number of guest",
-			attend: "Please select event",
-			message: {
-				maxlength: jQuery.validator.format("Please enter no more than {0} characters!")
-			},
-		},
-
-		// ajax request
-		submitHandler: function (form) {
-			
-			var data = $(form).serialize();
-			var form = $("#rsvp_form");
-			
-			// loader
-			$( ".loader").show();
-			
-			// ajax request
-			$.ajax({
-				type: "POST",
-				url: "sender.php",
-				data: data,
-				dataType: "json",
-				success: function (data) {
-					
-					// if send data successfull
-					if(data.status === 'success'){
-						
-						$( ".loader").hide();
-						$( form ).fadeOut( "slow" );
-						setTimeout(function() {
-							$( ".form-success").show( "slow" );
-						}, 300);
-						
-					// if send data something wrong	
-					}else if(data.status === 'error'){
-						
-						$( ".loader").hide();
-						$( form ).fadeOut( "slow" );
-						setTimeout(function() {
-							$( ".form-error").show( "slow" );
-						}, 300);
-					}
-					
-				}
-			});
-			return false;
-		}	   
-
 	});
 
 
