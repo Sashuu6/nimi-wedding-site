@@ -108,7 +108,7 @@ $(document).ready(function() {
 		var countDownDate = Date.parse('28 Oct 2018 11:00:00');
 		
 		// Update the count down every 1 second
-		var x = setInterval(function() {
+		var x = setIntxerval(function() {
 
 		  // Get todays date and time
 		  var now = new Date().getTime();
